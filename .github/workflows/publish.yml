@@ -1,0 +1,20 @@
+name: Publicar asset en GitHub Pages
+
+on:
+  push:
+    paths:
+      - 'impact_serie_001/**'
+      - '.github/workflows/publish.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./impact_serie_001
